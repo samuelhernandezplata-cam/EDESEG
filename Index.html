@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGC — EDESEG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+/* ============================================================
+   EDESEG CREACIONES — Design System Completo
+   Cubre: Index.html (dashboard) + Capitulo4–10.html
+   Un solo archivo, sin tocar ningún HTML.
+   Paleta extraída del logotipo oficial.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;500;600&display=swap');
+
+/* ----------------------------------------------------------
+   1. VARIABLES COMPARTIDAS (usadas en todo el sitio)
+   ---------------------------------------------------------- */
+:root {
+
+  /* ── Fondos ── */
+  --bg-base:     #1b2733;
+  --bg-mid:      #243041;
+  --bg-surface:  #2c3a4e;
+  --bg-elevated: #334457;
+
+  /* ── Dorado EDESEG (del símbolo entrelazado del logo) ── */
+  --gold:              #c9975a;
+  --gold-light:        #e8c07a;
+  --gold-dark:         #a57840;
+  --gold-subtle:       rgba(201,151,90,0.12);
+  --gold-border:       rgba(201,151,90,0.25);
+  --gold-border-strong:rgba(201,151,90,0.55);
+  --grad-gold: linear-gradient(135deg,#e8c07a 0%,#c9975a 50%,#a57840 100%);
+  --grad-gold-h: linear-gradient(90deg,#e8c07a 0%,#c9975a 50%,#a57840 100%);
+
+  /* ── Textos ── */
+  --text-primary:   #f0ece4;
+  --text-secondary: #b8b0a4;
+  --text-muted:     #7a7570;
+  --text-on-gold:   #1b2733;
+
+  /* ── Estados ── */
+  --success:     #5aaa78;
+  --success-bg:  rgba(90,170,120,0.14);
+  --warning:     #d4974a;
+  --warning-bg:  rgba(212,151,74,0.14);
+  --danger:      #c05a5a;
+  --danger-bg:   rgba(192,90,90,0.14);
+  --info:        #5a8fc9;
+  --info-bg:     rgba(90,143,201,0.14);
+
+  /* ── Sombras ── */
+  --shadow-sm:   0 1px 4px rgba(0,0,0,.30);
+  --shadow-md:   0 4px 18px rgba(0,0,0,.40);
+  --shadow-lg:   0 8px 32px rgba(0,0,0,.55);
+  --shadow-gold: 0 4px 22px rgba(201,151,90,.28);
+
+  /* ── Espaciado ── */
+  --sp-xs:  .375rem;
+  --sp-sm:  .625rem;
+  --sp-md:  1rem;
+  --sp-lg:  1.5rem;
+  --sp-xl:  2rem;
+  --sp-2xl: 3rem;
+  --sp-3xl: 4rem;
+
+  /* ── Radios ── */
+  --r-sm:   5px;
+  --r-md:   10px;
+  --r-lg:   16px;
+  --r-full: 9999px;
+
+  /* ── Tipografía ── */
+  --font-display: 'Roboto', Georgia, serif;
+  --font-ui:      'Montserrat','Barlow Condensed',sans-serif;
+
+  /* ── Transiciones ── */
+  --t-fast:   150ms ease;
+  --t-base:   280ms ease;
+  --t-smooth: 400ms cubic-bezier(.4,0,.2,1);
+
+  /* ────────────────────────────────────────────────────────
+     ALIAS del sistema "g-*" que usa Capitulo4–10.html
+     Mapea las variables antiguas a la paleta EDESEG.
+  ──────────────────────────────────────────────────────── */
+  --g-primary:        var(--gold);
+  --g-primary-mid:    var(--gold);
+  --g-primary-light:  var(--gold-subtle);
+  --g-primary-dark:   var(--gold-dark);
+
+  --g-secondary:      #243041;          /* azul marino medio — header de capítulos */
+  --g-secondary-dark: #1b2733;
+  --g-secondary-light:rgba(36,48,65,.60);
+
+  --g-accent:         var(--success);
+  --g-accent-light:   var(--success-bg);
+
+  --g-warning:        var(--warning);
+  --g-warning-bg:     var(--warning-bg);
+  --g-danger:         var(--danger);
+  --g-danger-bg:      var(--danger-bg);
+  --g-info:           var(--info);
+  --g-info-bg:        var(--info-bg);
+
+  --g-bg-page:        var(--bg-base);
+  --g-bg-card:        var(--bg-surface);
+  --g-bg-surface:     var(--bg-elevated);
+
+  --g-text-primary:   var(--text-primary);
+  --g-text-secondary: var(--text-secondary);
+  --g-text-muted:     var(--text-muted);
+
+  --g-border:         var(--gold-border);
+  --g-border-strong:  var(--gold-border-strong);
+
+  --g-space-xs:  var(--sp-xs);
+  --g-space-sm:  var(--sp-sm);
+  --g-space-md:  var(--sp-md);
+  --g-space-lg:  var(--sp-lg);
+  --g-space-xl:  var(--sp-xl);
+  --g-space-2xl: var(--sp-2xl);
+
+  --g-radius-sm:   var(--r-sm);
+  --g-radius-md:   var(--r-md);
+  --g-radius-lg:   var(--r-lg);
+  --g-radius-pill: var(--r-full);
+
+  --g-font-mono: 'Courier New', Courier, monospace;
+
+  /* Variables legacy del Index */
+  --primary:        var(--gold);
+  --primary-light:  var(--gold-subtle);
+  --secondary:      var(--info);
+  --secondary-light:var(--info-bg);
+  --accent:         var(--success);
+  --accent-light:   var(--success-bg);
+}
+
+/* ----------------------------------------------------------
+   2. RESET BASE
+   ---------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-ui);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+::selection { background: rgba(201,151,90,.22); color: var(--gold-light); }
+
+/* ----------------------------------------------------------
+   3. SITE WRAPPER
+   ---------------------------------------------------------- */
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg-base);
+}
+
+/* ----------------------------------------------------------
+   4. HEADER — Dashboard (Index.html)
+   ---------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(27,39,51,.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--gold-border);
+  box-shadow: 0 2px 20px rgba(0,0,0,.40);
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--sp-sm) var(--sp-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-lg);
+  height: 58px;
+}
+
+/* Logo */
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-sm);
+  background: var(--grad-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-gold);
+}
+
+.logo-text { display: flex; flex-direction: column; }
+
+.logo-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.logo-sub {
+  font-size: .64rem;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  line-height: 1;
+}
+
+/* Derecha del header — dashboard */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+}
+
+.header-badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--r-full);
+  padding: 5px 14px;
+}
+
+.dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 6px var(--success);
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%     { opacity:.55; transform:scale(.85); }
+}
+
+.btn-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  font-family: var(--font-ui);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-on-gold);
+  background: var(--grad-gold);
+  border: none;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: all var(--t-smooth);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-header:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(201,151,90,.45);
+  color: var(--text-on-gold);
+}
+
+/* ----------------------------------------------------------
+   5. HEADER — Capítulos (nav horizontal)
+   ---------------------------------------------------------- */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.nav-item {
+  font-family: var(--font-ui);
+  font-size: .75rem;
+  font-weight: 500;
+  color: rgba(240,236,228,.55);
+  padding: 6px 12px;
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  transition: background var(--t-fast), color var(--t-fast);
+  white-space: nowrap;
+  letter-spacing: .03em;
+}
+
+.nav-item:hover { background: rgba(201,151,90,.12); color: var(--gold-light); }
+.nav-item.active { background: rgba(201,151,90,.18); color: var(--gold-light); }
+
+.nav-divider {
+  width: 1px; height: 18px;
+  background: var(--gold-border);
+  margin: 0 4px;
+}
+
+/* ----------------------------------------------------------
+   6. BREADCRUMB
+   ---------------------------------------------------------- */
+.breadcrumb-bar {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--gold-border);
+  padding: 0 var(--sp-xl);
+}
+
+.breadcrumb-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+}
+
+.breadcrumb-item {
+  font-size: .75rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--t-fast);
+}
+
+.breadcrumb-item:hover { color: var(--gold); }
+
+.breadcrumb-sep {
+  font-size: .7rem;
+  color: var(--text-muted);
+  opacity: .5;
+}
+
+.breadcrumb-current {
+  font-size: .75rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* ----------------------------------------------------------
+   7. MAIN CONTENT
+   ---------------------------------------------------------- */
+.main-content {
+  flex: 1;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--sp-2xl) var(--sp-xl);
+}
+
+/* ----------------------------------------------------------
+   8. HERO — Dashboard
+   ---------------------------------------------------------- */
+.page-label {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--sp-sm);
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem,5vw,3.2rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-sm);
+}
+
+.page-subtitle {
+  font-size: .92rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 62ch;
+}
+
+/* ----------------------------------------------------------
+   9. HERO — Capítulos
+   ---------------------------------------------------------- */
+.chapter-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-xl);
+  margin-bottom: var(--sp-2xl);
+  background: var(--bg-surface);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-xl) 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.chapter-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--grad-gold-h);
+}
+
+.chapter-hero-left {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-lg);
+  flex: 1;
+}
+
+.chapter-hero-icon {
+  width: 52px; height: 52px;
+  background: var(--gold-subtle);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.chapter-num-label {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.chapter-hero-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.chapter-hero-desc {
+  font-size: .82rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 56ch;
+}
+
+.chapter-hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--sp-md);
+  flex-shrink: 0;
+}
+
+.chapter-compliance { text-align: right; }
+
+.chapter-compliance-value {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.chapter-compliance-label {
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ----------------------------------------------------------
+   10. SECTION LABEL / HEADER
+   ---------------------------------------------------------- */
+.section-label {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-bottom: var(--sp-sm);
+  border-bottom: 1px solid var(--gold-border);
+  margin-bottom: var(--sp-lg);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-md);
+}
+
+.section-title {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-bottom: var(--sp-sm);
+  border-bottom: 1px solid var(--gold-border);
+  flex: 1;
+}
+
+/* ----------------------------------------------------------
+   11. CHAPTERS GRID — Dashboard
+   ---------------------------------------------------------- */
+.chapters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
+  gap: var(--sp-lg);
+  margin-bottom: var(--sp-2xl);
+}
+
+.chapter-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--r-md);
+  padding: var(--sp-lg);
+  text-decoration: none;
+  color: inherit;
+  transition: all var(--t-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.chapter-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--grad-gold-h);
+  opacity: 0;
+  transition: opacity var(--t-base);
+}
+
+.chapter-card:hover {
+  border-color: var(--gold-border-strong);
+  background: var(--bg-elevated);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), var(--shadow-gold);
+  color: inherit;
+}
+
+.chapter-card:hover::before { opacity: 1; }
+
+.chapter-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chapter-num-badge {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.chapter-card-icon {
+  width: 42px; height: 42px;
+  border-radius: var(--r-sm);
+  background: var(--gold-subtle);
+  border: 1px solid var(--gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  flex-shrink: 0;
+  transition: all var(--t-base);
+}
+
+.chapter-card:hover .chapter-card-icon {
+  background: rgba(201,151,90,.22);
+  border-color: var(--gold-border-strong);
+  color: var(--gold-light);
+}
+
+.chapter-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.chapter-desc {
+  font-size: .78rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.chapter-card-footer {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--sp-md);
+  margin-top: auto;
+}
+
+.chapter-progress-wrap { flex: 1; }
+
+.chapter-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: .70rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+  letter-spacing: .05em;
+}
+
+.chapter-progress-bar {
+  height: 4px;
+  background: rgba(0,0,0,.30);
+  border-radius: var(--r-full);
+  overflow: hidden;
+}
+
+.chapter-progress-fill {
+  height: 100%;
+  border-radius: var(--r-full);
+  background: var(--grad-gold-h);
+  transition: width .8s cubic-bezier(.4,0,.2,1);
+}
+
+.chapter-progress-fill.warning {
+  background: linear-gradient(90deg,#d4974a,#e8b86a);
+}
+
+.chapter-progress-fill.danger {
+  background: linear-gradient(90deg,#c05a5a,#d47a7a);
+}
+
+.chapter-arrow {
+  color: var(--text-muted);
+  transition: all var(--t-base);
+  flex-shrink: 0;
+}
+
+.chapter-card:hover .chapter-arrow {
+  color: var(--gold);
+  transform: translateX(3px);
+}
+
+/* ----------------------------------------------------------
+   12. KPI / METRICS GRID — Capítulos
+   ---------------------------------------------------------- */
+.kpi-section { margin-bottom: var(--sp-2xl); }
+
+.g-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: var(--sp-md);
+}
+
+.g-metric-card {
+  background: var(--bg-surface);
+  border-radius: var(--r-md);
+  padding: var(--sp-lg);
+  border: 1px solid var(--gold-border);
+  transition: border-color var(--t-base), box-shadow var(--t-base);
+}
+
+.g-metric-card:hover {
+  border-color: var(--gold-border-strong);
+  box-shadow: var(--shadow-gold);
+}
+
+.metric-icon {
+  width: 30px; height: 30px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-sm);
+}
+
+.metric-label {
+  font-size: .72rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--sp-xs);
+  line-height: 1.4;
+}
+
+.metric-value {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.metric-trend {
+  font-size: .70rem;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: var(--sp-xs);
+}
+
+.metric-trend.warning { color: var(--warning); }
+.metric-trend.neutral { color: var(--text-secondary); }
+
+/* ----------------------------------------------------------
+   13. DOCS / PROCESS CARDS — Capítulos
+   ---------------------------------------------------------- */
+.docs-section { margin-bottom: var(--sp-2xl); }
+
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+  gap: var(--sp-lg);
+}
+
+.process-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-lg) 18px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+  transition: border-color var(--t-base), box-shadow var(--t-base), transform var(--t-smooth);
+}
+
+.process-card:hover {
+  border-color: var(--gold-border-strong);
+  box-shadow: var(--shadow-gold);
+  transform: translateY(-2px);
+}
+
+.process-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--sp-sm);
+}
+
+.process-card-icon {
+  width: 38px; height: 38px;
+  border-radius: var(--r-sm);
+  background: var(--gold-subtle);
+  border: 1px solid var(--gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.process-card-meta {
+  font-size: .68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  padding: 2px 8px;
+  border-radius: var(--r-full);
+  letter-spacing: .06em;
+  height: fit-content;
+}
+
+.process-card-body { flex: 1; }
+
+.process-card-title {
+  font-family: var(--font-display);
+  font-size: .98rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.process-card-desc {
+  font-size: .75rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.process-card-footer {
+  display: flex;
+  gap: var(--sp-sm);
+  flex-wrap: wrap;
+  padding-top: var(--sp-sm);
+  border-top: 1px solid var(--gold-border);
+}
+
+.process-card-footer .g-btn {
+  flex: 1;
+  min-width: 120px;
+  font-size: .70rem;
+  padding: 7px 12px;
+  justify-content: center;
+}
+
+/* ----------------------------------------------------------
+   14. TABLA DE REGISTROS
+   ---------------------------------------------------------- */
+.records-section { margin-bottom: var(--sp-2xl); }
+
+.g-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--gold-border);
+  border-radius: var(--r-md);
+}
+
+.g-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .78rem;
+}
+
+.g-table thead tr {
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--gold-border-strong);
+}
+
+.g-table th {
+  padding: 10px 14px;
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.g-table tbody tr {
+  border-bottom: 1px solid rgba(201,151,90,.10);
+  transition: background var(--t-fast);
+}
+
+.g-table tbody tr:last-child { border-bottom: none; }
+
+.g-table tbody tr:hover { background: var(--gold-subtle); }
+
+.g-table td {
+  padding: 10px 14px;
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
+
+/* ----------------------------------------------------------
+   15. BADGES — ambos sistemas
+   ---------------------------------------------------------- */
+.badge, .g-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  font-size: .63rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-radius: var(--r-full);
+  border: 1px solid transparent;
+  white-space: nowrap;
+  gap: 3px;
+}
+
+/* Dashboard */
+.badge-success,  .g-badge-success  { background:var(--success-bg); color:var(--success); border-color:rgba(90,170,120,.28); }
+.badge-warning,  .g-badge-warning  { background:var(--warning-bg); color:var(--warning); border-color:rgba(212,151,74,.28); }
+.badge-danger,   .g-badge-danger   { background:var(--danger-bg);  color:var(--danger);  border-color:rgba(192,90,90,.28); }
+.badge-info,     .g-badge-info     { background:var(--info-bg);    color:var(--info);    border-color:rgba(90,143,201,.28); }
+.g-badge-pendiente                 { background:rgba(122,117,112,.14); color:var(--text-muted); border-color:rgba(122,117,112,.28); }
+
+/* ----------------------------------------------------------
+   16. BOTONES — sistema g-btn
+   ---------------------------------------------------------- */
+.g-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-family: var(--font-ui);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--t-smooth);
+  white-space: nowrap;
+}
+
+.g-btn-primary {
+  background: var(--grad-gold);
+  color: var(--text-on-gold);
+  box-shadow: var(--shadow-gold);
+}
+
+.g-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(201,151,90,.45);
+  color: var(--text-on-gold);
+}
+
+.g-btn-secondary {
+  background: transparent;
+  color: var(--gold);
+  border-color: var(--gold-border-strong);
+}
+
+.g-btn-secondary:hover {
+  background: var(--gold-subtle);
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+
+.g-btn-sm {
+  padding: 5px 12px;
+  font-size: .68rem;
+}
+
+/* ----------------------------------------------------------
+   17. PANEL / QUICK LINKS — Dashboard
+   ---------------------------------------------------------- */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-lg);
+}
+
+.panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--r-md);
+  padding: var(--sp-lg);
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--sp-md);
+  padding-bottom: var(--sp-sm);
+  border-bottom: 1px solid var(--gold-border);
+}
+
+.quick-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  padding: var(--sp-sm);
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--t-fast);
+  margin-bottom: 2px;
+}
+
+.quick-link:hover { background: var(--gold-subtle); }
+
+.quick-link-icon {
+  width: 34px; height: 34px;
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.quick-link-text {
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.quick-link-sub {
+  font-size: .70rem;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+/* ----------------------------------------------------------
+   18. FOOTER
+   ---------------------------------------------------------- */
+.site-footer {
+  border-top: 1px solid var(--gold-border);
+  background: var(--bg-mid);
+  margin-top: auto;
+  padding: var(--sp-md) var(--sp-xl);
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-md);
+}
+
+.footer-copy {
+  font-size: .72rem;
+  color: var(--text-muted);
+  letter-spacing: .04em;
+}
+
+.footer-version {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  padding: 3px 10px;
+  border-radius: var(--r-full);
+}
+
+/* ----------------------------------------------------------
+   19. FAB
+   ---------------------------------------------------------- */
+.fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 300;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--grad-gold);
+  color: var(--text-on-gold);
+  font-family: var(--font-ui);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-radius: var(--r-full);
+  text-decoration: none;
+  box-shadow: var(--shadow-gold), var(--shadow-md);
+  transition: all var(--t-smooth);
+}
+
+.fab:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 32px rgba(201,151,90,.50), var(--shadow-lg);
+  color: var(--text-on-gold);
+}
+
+/* ----------------------------------------------------------
+   20. RESPONSIVE
+   ---------------------------------------------------------- */
+@media (max-width:1024px) {
+  .g-metrics-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+@media (max-width:900px) {
+  .chapters-grid { grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); }
+  .chapter-hero  { flex-direction: column; }
+  .chapter-hero-right { align-items: flex-start; flex-direction: row; gap: var(--sp-lg); }
+  .header-nav .nav-item:not(.active) { display: none; }
+}
+
+@media (max-width:640px) {
+  .header-inner   { padding: var(--sp-sm) var(--sp-md); }
+  .header-badge   { display: none; }
+  .main-content   { padding: var(--sp-xl) var(--sp-md); }
+  .chapters-grid  { grid-template-columns: 1fr; }
+  .docs-grid      { grid-template-columns: 1fr; }
+  .g-metrics-grid { grid-template-columns: repeat(2,1fr); }
+  .chapter-hero-icon { display: none; }
+  .footer-inner   { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .fab span       { display: none; }
+  .fab            { padding: 14px; border-radius: 50%; }
+}
+
+</style>
+  <style>
+    /* Ajuste de tipografía — solo para el Dashboard (Index.html) */
+    .page-label      { font-size: .8rem; }
+    .page-title      { font-size: clamp(2.4rem,6vw,3.8rem); }
+    .page-subtitle   { font-size: 1.05rem; }
+    .section-label   { font-size: .8rem; }
+    .chapter-num-label { font-size: .8rem; }
+    .chapter-hero-title { font-size: 1.9rem; }
+    .chapter-hero-desc  { font-size: .95rem; }
+    .chapter-num-badge  { font-size: .78rem; }
+    .chapter-title       { font-size: 1.3rem; }
+    .chapter-desc         { font-size: .9rem; }
+    .quick-link-text  { font-size: .92rem; }
+    .quick-link-sub   { font-size: .8rem; }
+    .logo-name { font-size: 1.3rem; }
+    .logo-sub  { font-size: .72rem; }
+  </style>
+</head>
+<body>
+<div class="site-wrapper">
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="Index.html" class="logo-wrap">
+        <div class="logo-icon" style="background:none;padding:0;overflow:hidden;">
+          <img src="data:image/jpeg;base64,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" alt="Logotipo EDESEG" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+        <div>
+          <div class="logo-name">EDESEG</div>
+          <div class="logo-sub">Sistema de Gestión de Calidad</div>
+        </div>
+      </a>
+      <div class="header-right">
+        <div class="header-badge"><span class="dot"></span>ISO 9001:2015 — Activo</div>
+        <a href="#" class="btn-header">
+          <i data-lucide="file-text" style="width:13px;height:13px;"></i>Lista Maestra
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="main-content">
+
+    <!-- Hero -->
+    <div style="margin-bottom:var(--sp-2xl);">
+      <div class="page-label">Dashboard principal · Enfoque sistémico y basado en procesos</div>
+      <h1 class="page-title">Sistema de Gestión de Calidad</h1>
+      <p class="page-subtitle">El Liderazgo impulsa el ciclo PHVA (Planear, Hacer, Verificar, Actuar) que articula los requisitos ISO 9001:2015 — Capítulos 4 al 10 — como procesos interrelacionados, no como una lista aislada de cláusulas.</p>
+    </div>
+
+    <!-- EJE CENTRAL: LIDERAZGO (Capítulo 5) -->
+    <a href="Capitulo 5 Liderazgo/Liderazgo.html" class="chapter-hero" style="text-decoration:none;color:inherit;margin-bottom:var(--sp-2xl);">
+      <div class="chapter-hero-left">
+        <div class="chapter-hero-icon">
+          <i data-lucide="users" style="width:26px;height:26px;"></i>
+        </div>
+        <div>
+          <div class="chapter-num-label">Eje Central · Motor del SGC — Capítulo 5</div>
+          <div class="chapter-hero-title">Liderazgo</div>
+          <p class="chapter-hero-desc">El compromiso de la dirección, la política de calidad y la asignación de roles y responsabilidades sostienen y dan dirección a todo el ciclo PHVA: sin liderazgo activo, la planificación, la operación y la mejora continua pierden impulso y coherencia.</p>
+        </div>
+      </div>
+      <div class="chapter-hero-right">
+        <div class="chapter-arrow"><i data-lucide="chevron-right" style="width:22px;height:22px;"></i></div>
+      </div>
+    </a>
+
+    <!-- PLANEAR -->
+    <div class="section-label">1. Planificar — Contexto y planificación estratégica</div>
+    <div class="chapters-grid">
+
+      <!-- Cap. 4 -->
+      <a href="Capitulo 4 Contexto/Contexto.html" class="chapter-card">
+        <div class="chapter-card-header">
+          <span class="chapter-num-badge">1. PLANIFICAR · Capitulo 4</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div class="chapter-card-icon"><i data-lucide="map" style="width:20px;height:20px;"></i></div>
+          <div><div class="chapter-title">Contexto de la Organización</div><div class="chapter-desc">Análisis FODA, partes interesadas y alcance del SGC: la base sobre la que se identifican los riesgos y oportunidades que alimentan la planificación.</div></div>
+        </div>
+        <div class="chapter-card-footer">
+          <div class="chapter-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></div>
+        </div>
+      </a>
+
+      <!-- Cap. 6 -->
+      <a href="Capitulo 6 Planificacion/Planificacion.html" class="chapter-card">
+        <div class="chapter-card-header">
+          <span class="chapter-num-badge">1. PLANIFICAR · Capitulo 6</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div class="chapter-card-icon"><i data-lucide="shield-check" style="width:20px;height:20px;"></i></div>
+          <div><div class="chapter-title">Planificación</div><div class="chapter-desc">Gestión de riesgos y oportunidades, objetivos de calidad y planes de acción que traducen el contexto organizacional en decisiones concretas para el ciclo.</div></div>
+        </div>
+        <div class="chapter-card-footer">
+          <div class="chapter-progress-wrap"></div>
+          <div class="chapter-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- HACER -->
+    <div class="section-label">2. Hacer — Apoyo y operación</div>
+    <div class="chapters-grid">
+
+      <!-- Cap. 7 -->
+      <a href="Capitulo 7 Apoyo/Apoyo.html" class="chapter-card">
+        <div class="chapter-card-header">
+          <span class="chapter-num-badge">2. HACER · Capitulo 7</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div class="chapter-card-icon"><i data-lucide="settings-2" style="width:20px;height:20px;"></i></div>
+          <div><div class="chapter-title">Apoyo</div><div class="chapter-desc">Recursos, infraestructura, competencia y comunicación: los procesos habilitantes que sostienen la operación diaria y responden a los riesgos identificados en la planificación.</div></div>
+        </div>
+        <div class="chapter-card-footer">
+          <div class="chapter-progress-wrap"></div>
+          <div class="chapter-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></div>
+        </div>
+      </a>
+
+      <!-- Cap. 8 -->
+      <a href="Capitulo 8 Operacion/Operacion.html" class="chapter-card">
+        <div class="chapter-card-header">
+          <span class="chapter-num-badge">2. HACER · Capitulo 8</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div class="chapter-card-icon"><i data-lucide="flask-conical" style="width:20px;height:20px;"></i></div>
+          <div><div class="chapter-title">Operación</div><div class="chapter-desc">Control de los procesos Operativos (Ventas, Distribución y Preparación, Confección y Acabado): la ejecución donde los recursos y competencias de Apoyo se materializan en resultados confiables.</div></div>
+        </div>
+        <div class="chapter-card-footer">
+          <div class="chapter-progress-wrap"></div>
+          <div class="chapter-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- VERIFICAR -->
+    <div class="section-label">3. Verificar — Evaluación del desempeño</div>
+    <div class="chapters-grid">
+
+      <!-- Cap. 9 -->
+      <a href="Capitulo 9 Evaluacion/Evaluacion.html" class="chapter-card">
+        <div class="chapter-card-header">
+          <span class="chapter-num-badge">3. VERIFICAR · Capitulo 9</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div class="chapter-card-icon"><i data-lucide="bar-chart-2" style="width:20px;height:20px;"></i></div>
+          <div><div class="chapter-title">Evaluación del Desempeño</div><div class="chapter-desc">Seguimiento, medición, auditoría interna y revisión por la dirección: el punto de control que confirma si la operación cumplió lo planificado y expone brechas para actuar.</div></div>
+        </div>
+        <div class="chapter-card-footer">
+          <div class="chapter-progress-wrap"></div>
+          <div class="chapter-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- ACTUAR -->
+    <div class="section-label">4. Actuar — Mejora continua</div>
+    <div class="chapters-grid">
+
+      <!-- Cap. 10 -->
+      <a href="Capituo 10 Mejora/Mejora.html" class="chapter-card">
+        <div class="chapter-card-header">
+          <span class="chapter-num-badge">4. ACTUAR · Capitulo 10</span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div class="chapter-card-icon"><i data-lucide="refresh-cw" style="width:20px;height:20px;"></i></div>
+          <div><div class="chapter-title">Mejora</div><div class="chapter-desc">No conformidades y acciones correctivas que cierran el ciclo: las lecciones aprendidas retroalimentan al Liderazgo y reinician la Planificación con un sistema más robusto.</div></div>
+        </div>
+        <div class="chapter-card-footer">
+          <div class="chapter-progress-wrap"></div>
+          <div class="chapter-arrow"><i data-lucide="chevron-right" style="width:16px;height:16px;"></i></div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Accesos rápidos -->
+    <div class="bottom-grid">
+      <div class="panel">
+        <div class="panel-title">
+          <i data-lucide="zap" style="width:14px;height:14px;color:var(--primary);"></i>Accesos Rápidos
+        </div>
+        <a href="#" class="quick-link">
+          <div class="quick-link-icon" style="background:var(--warning-bg);color:var(--warning);"><i data-lucide="triangle-alert" style="width:15px;height:15px;"></i></div>
+          <div><div class="quick-link-text">Registrar Riesgo / Oportunidad</div><div class="quick-link-sub">Cap. 6 · Planificar</div></div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="quick-link-icon" style="background:var(--accent-light);color:var(--accent);"><i data-lucide="goal" style="width:15px;height:15px;"></i></div>
+          <div><div class="quick-link-text">Seguimiento Objetivos de Calidad</div><div class="quick-link-sub">Cap. 6 · Planificar</div></div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="quick-link-icon" style="background:var(--primary-light);color:var(--primary);"><i data-lucide="file-plus" style="width:15px;height:15px;"></i></div>
+          <div><div class="quick-link-text">Registrar No Conformidad</div><div class="quick-link-sub">Formulario Cap. 10 · Actuar</div></div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="quick-link-icon" style="background:var(--secondary-light);color:var(--primary);"><i data-lucide="lightbulb" style="width:15px;height:15px;"></i></div>
+          <div><div class="quick-link-text">Registrar Idea de Mejora</div><div class="quick-link-sub">Cap. 10 · Mejora</div></div>
+        </a>
+
+        <a href="#" class="quick-link">
+          <div class="quick-link-icon" style="background:var(--accent-light);color:var(--accent);"><i data-lucide="user-check" style="width:15px;height:15px;"></i></div>
+          <div><div class="quick-link-text">Registrar Capacitación</div><div class="quick-link-sub">Cap. 7 · Hacer</div></div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="quick-link-icon" style="background:var(--primary-light);color:var(--primary);"><i data-lucide="wrench" style="width:15px;height:15px;"></i></div>
+          <div><div class="quick-link-text">Mantenimiento de Equipos</div><div class="quick-link-sub">Cap. 7 · Hacer</div></div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="quick-link-icon" style="background:var(--secondary-light);color:var(--secondary);"><i data-lucide="globe" style="width:15px;height:15px;"></i></div>
+          <div><div class="quick-link-text">Factores  Internos / Externos</div><div class="quick-link-sub">Cap. 4 · Planificar</div></div>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span class="footer-copy">© 2026 Géntodos · Sistema de Gestión de Calidad</span>
+      <span class="footer-version">ISO 9001:2015 · v1.0</span>
+    </div>
+  </footer>
+
+</div>
+
+<a href="#" class="fab">
+  <i data-lucide="file-text" style="width:16px;height:16px;"></i>
+  <span>Lista Maestra</span>
+</a>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>
